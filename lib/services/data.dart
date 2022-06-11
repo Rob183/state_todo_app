@@ -8,4 +8,9 @@ class Data extends ChangeNotifier {
     Task(name: 'buy eggs'),
     Task(name: 'buy bread'),
   ];
+
+  void addTaskList(newTaskName) {
+    tasks.add(Task(name: newTaskName));
+    notifyListeners();
+  }
 }

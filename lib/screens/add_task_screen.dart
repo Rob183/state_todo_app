@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../services/data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-AddTaskScreen(this.addTaskCallback);
-
-  final Function addTaskCallback;
   @override
   Widget build(BuildContext context) {
     final myController = TextEditingController();
@@ -38,7 +38,12 @@ AddTaskScreen(this.addTaskCallback);
             ),
             TextButton(
               onPressed: () {
-                addTaskCallback(myController.text);
+                try {
+                  Provider.of<Data>(context, listen: false)
+                      .addTaskList(myController.text);
+                } catch (e) {
+                  print(e);
+                }
                 myController.clear();
                 Navigator.pop(context);
               },
