@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:state_todo_app/screens/add_task_screen.dart';
 
+import '../models/task.dart';
 import '../widgets/task_list.dart';
 
-class TasksScreen extends StatelessWidget {
-  const TasksScreen({Key? key}) : super(key: key);
+class TasksScreen extends StatefulWidget {
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'buy milk'),
+    Task(name: 'buy eggs'),
+    Task(name: 'buy bread'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +28,7 @@ class TasksScreen extends StatelessWidget {
                 top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
@@ -40,7 +50,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
@@ -56,7 +66,7 @@ class TasksScreen extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: TaskList(),
+              child: TaskList(tasks),
             ),
           ),
         ],
@@ -71,7 +81,11 @@ class TasksScreen extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTaskScreen(),
+                      child: AddTaskScreen((newTaskTitle) {
+                        setState(() {
+                          tasks.add(Task(name: newTaskTitle));
+                        });
+                      }),
                     ),
                   ),
               shape: RoundedRectangleBorder(
