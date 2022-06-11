@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen(this.addTaskCallback);
+AddTaskScreen(this.addTaskCallback);
 
   final Function addTaskCallback;
-
   @override
   Widget build(BuildContext context) {
     final myController = TextEditingController();
