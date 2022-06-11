@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/taskScreen.dart';
-import 'services/data.dart';
+import 'models/taskData.dart';
 
 void main() {
   runApp(const MyApp());

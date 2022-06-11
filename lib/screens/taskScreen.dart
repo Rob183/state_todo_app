@@ -3,15 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:state_todo_app/screens/add_task_screen.dart';
 
 import '../models/task.dart';
-import '../services/data.dart';
+import '../models/taskData.dart';
 import '../widgets/task_list.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Task> taskList = Provider.of<Data>(context).tasks;

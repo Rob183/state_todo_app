@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:state_todo_app/models/task.dart';
 
-import '../services/data.dart';
+import '../models/taskData.dart';
 
 class AddTaskScreen extends StatelessWidget {
   @override
@@ -38,12 +39,9 @@ class AddTaskScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                try {
-                  Provider.of<Data>(context, listen: false)
-                      .addTaskList(myController.text);
-                } catch (e) {
-                  print(e);
-                }
+                Provider.of<Data>(context, listen: false)
+                    .addTaskList(myController.text);
+
                 myController.clear();
                 Navigator.pop(context);
               },
